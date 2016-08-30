@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SqlConn>
+	<type>mysql</type>
+	<host>192.168.136.128</host>
+	<port>3306</port>
+	<dbname>test</dbname>
+	<username>root</username>
+	<password>abc123!!</password>
+</SqlConn>

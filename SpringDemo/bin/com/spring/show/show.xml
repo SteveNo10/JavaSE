@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="stage" class="com.spring.show.Stage"
+			factory-method="getInstance"></bean>
+	
+	<bean id="light" class="com.spring.show.Light"
+			init-method="TurnOn"
+			destroy-method="TurnOff">
+	</bean>
+	
+	<bean id="ticket" class="com.spring.show.Ticket" scope="prototype"></bean>
+	
+	<bean id="drum" class="com.spring.show.Drum"></bean>
+	<bean id="guitar" class="com.spring.show.Guitar"></bean>
+	<bean id="piano" class="com.spring.show.Piano"></bean>
+	
+	<bean id="zhoujielun" class="com.spring.show.Singer">
+		<constructor-arg value="Jay"></constructor-arg>
+		<constructor-arg value="MinMin"></constructor-arg>
+		<constructor-arg ref="piano"></constructor-arg>
+	</bean>
+	
+	<bean id="linjunjie" class="com.spring.show.Singer"
+		p:name="JJ"
+		p:song="CaoCao"
+		p:instrument-ref="drum">
+	</bean>
+	
+	<bean id="caiyilin" class="com.spring.show.Singer"
+		p:name="Jolin"
+		p:song="RiBuLuo"
+		p:instrument-ref="guitar">
+	</bean>
+	
+	<bean id="huangjiaju" class="com.spring.show.Singer"
+		p:name="beyond"
+		p:song="TheGreatWall"
+		p:instrument-ref="guitar">
+	</bean>
+	
+	<bean id="yeshirong" class="com.spring.show.Singer"
+		p:name="#{huangjiaju.name}"
+		p:song="#{huangjiaju.song}"
+		p:instrument-ref="drum">
+	</bean>
+	
+	<bean id="huangguanzhong" class="com.spring.show.Singer"
+		p:name="#{huangjiaju.name}"
+		p:song="#{huangjiaju.song}"
+		p:instrument-ref="piano">
+	</bean>
+	
+	<bean id="beyond" class="com.spring.show.Band">
+		<property name="singers">
+			<list>
+				<ref bean="huangjiaju"></ref>
+				<ref bean="yeshirong"></ref>
+				<ref bean="huangguanzhong"></ref>
+			</list>
+		</property>
+	</bean>
+</beans>

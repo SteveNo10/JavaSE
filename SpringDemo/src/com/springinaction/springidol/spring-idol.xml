@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		
+		<bean id="duke" class="com.springinaction.springidol.Juggler" >
+			<constructor-arg value="15"></constructor-arg>
+		</bean>			
+			
+		<bean id="sonnet29" class="com.springinaction.springidol.Sonnet29">
+		</bean>
+		
+		<bean id="poeticDuke" class="com.springinaction.springidol.PoeticJuggler">
+			<constructor-arg value="15"></constructor-arg>
+			<constructor-arg ref="sonnet29"></constructor-arg>
+		</bean>
+		
+		<bean id="theStage" class="com.springinaction.springidol.Stage"
+				factory-method="getInstance">
+		</bean>
+		
+		<bean id="ticket" class="com.springinaction.springidol.Ticket" scope="prototype">
+		</bean>
+		
+		<bean id="auditorium" class="com.springinaction.springidol.Auditorium"
+			init-method="TurnOnLight"
+			destroy-method="TurnOffLight">
+		</bean>
+		
+		<bean id="kenny" class="com.springinaction.springidol.Instrumentalist">
+			<property name="song" value="Jingle Bell"></property>
+			<property name="instrument" ref="saxphone"></property>
+		</bean>
+		
+		<bean id="saxphone" class="com.springinaction.springidol.Saxonphone"></bean>
+		
+		<bean id="john" class="com.springinaction.springidol.Instrumentalist">
+			<property name="song" value="Save My World"></property>
+			<property name="instrument">
+				<bean class="com.springinaction.springidol.Piano"></bean>
+			</property>
+		</bean>
+		
+		<bean id="guitar" class="com.springinaction.springidol.Guitar"></bean>
+		
+		<bean id="jj" class="com.springinaction.springidol.Instrumentalist"
+			p:song = "StarLight"
+			p:instrument-ref = "guitar" />
+			
+		<bean id="bank" class="com.springinaction.springidol.OnManBand">
+			<property name="instruments">
+				<list>
+					<ref bean="guitar"></ref>
+					<ref bean="saxphone"></ref>
+				</list>
+			</property>
+		</bean>
+</beans>
